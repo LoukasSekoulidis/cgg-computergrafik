@@ -27,8 +27,16 @@ public class Image {
   public void sample(Sampler s) {
     for (int x = 0; x != width; x++) {
       for (int y = 0; y != height; y++) {
-        setPixel(x, y, s.getColor(x, y));
+        setPixel(x, y, gammaKorrektur(s.getColor(x, y)));
       }
     }
+  }
+
+  public Color gammaKorrektur(Color c){
+    double r = Math.pow(c.r, 1/2.2);
+    double g = Math.pow(c.g, 1/2.2);
+    double b = Math.pow(c.b, 1/2.2);
+    Color tmp = new Color(r, g, b);
+    return tmp;
   }
 }
