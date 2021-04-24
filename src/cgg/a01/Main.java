@@ -16,9 +16,9 @@ public class Main {
     PolkaDots content3 = new PolkaDots(green, width, height, 15, 10);
 
     // Creates an image and iterates over all pixel positions inside the image.
-    Image image = new Image(width, height);
-    Image image2 = new Image(width, height);
-    Image image3 = new Image(width, height);
+    Image image = new Image(width, height, 10);
+    Image image2 = new Image(width, height, 10);
+    Image image3 = new Image(width, height, 10);
     for (int x = 0; x != width; x++) {
       for (int y = 0; y != height; y++) {
         // Sets the color for one particular pixel.
