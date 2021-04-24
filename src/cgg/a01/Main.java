@@ -3,7 +3,7 @@ package cgg.a01;
 import static cgtools.Color.*;
 
 import cgg.*;
-// for push with tag, forgot tag a01 while push 
+// for push with tag, forgot tag a01 while commit
 public class Main {
 
   public static void main(String[] args) {
@@ -11,9 +11,9 @@ public class Main {
     final int height = 270;
 
     // This class instance defines the contents of the image.
-    ConstantColor content = new ConstantColor(red);
-    Circle content2 = new Circle(green, width, height);
-    PolkaDots content3 = new PolkaDots(blue, width, height, 15, 10);
+    ConstantColor content = new ConstantColor(gray);
+    Circle content2 = new Circle(white, width, height);
+    PolkaDots content3 = new PolkaDots(green, width, height, 15, 10);
 
     // Creates an image and iterates over all pixel positions inside the image.
     Image image = new Image(width, height);

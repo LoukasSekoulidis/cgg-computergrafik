@@ -1,7 +1,7 @@
 package cgg.a01;
 
 import cgtools.*;
-// for push with tag, forgot tag a01 while push 
+// for push with tag, forgot tag a01 while commit
 // Represents the contents of an image. Provides the same color for all pixels.
 public class Circle implements Sampler {
     Color color;
