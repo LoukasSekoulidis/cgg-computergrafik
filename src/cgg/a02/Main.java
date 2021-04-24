@@ -13,17 +13,10 @@ public class Main {
     // This class instance defines the contents of the image.
     ColoredDiscs content1 = new ColoredDiscs(white, 75, width, height);
     // PolkaDots content2 = new PolkaDots(green, width, height, 15, 10);
-
-    // Creates an image and iterates over all pixel positions inside the image.
+    
     Image image1 = new Image(width, height);
     // Image image2 = new Image(width, height);
-    for (int x = 0; x != width; x++) {
-      for (int y = 0; y != height; y++) {
-        // Sets the color for one particular pixel.
-        image1.setPixel(x, y, content1.getColor(x, y));
-        // image2.setPixel(x, y, content2.getColor(x, y));
-      }
-    }
+    image1.sample(content1);
 
     // Write the image to disk.
     final String filename = "doc/a02-discs.png";

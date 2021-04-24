@@ -25,5 +25,10 @@ public class Image {
   }
 
   public void sample(Sampler s) {
+    for (int x = 0; x != width; x++) {
+      for (int y = 0; y != height; y++) {
+        setPixel(x, y, s.getColor(x, y));
+      }
+    }
   }
 }
