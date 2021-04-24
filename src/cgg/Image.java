@@ -1,5 +1,5 @@
 package cgg;
-
+// for push with tag, forgot tag a01 while push 
 import cgtools.*;
 
 public class Image {
