@@ -1,21 +1,22 @@
 package cgg.a03;
 import cgtools.*;
-// import cgtools.Vector.*;
+import java.util.ArrayList;
+
 
 public class Raytracing implements Sampler{
-    Kugel[] kugel;
+    ArrayList<Kugel> kugel;
     Lochkamera camera;
 
-    public Raytracing(Kugel[] kugel, Lochkamera camera){
+    public Raytracing(ArrayList<Kugel> kugel, Lochkamera camera){
         this.kugel = kugel;
         this.camera = camera;
 
     }
 
     public Color getColor(double x, double y){
-        for(Kugel kugel : kugel){
+        for(Kugel kugelEl : kugel){
             Ray ray = camera.Strahl(x, y);
-            Hit hit = kugel.intersect(ray);
+            Hit hit = kugelEl.intersect(ray);
             if(hit != null) {
                 Color color = shade(hit.n, hit.c);
                 return color;

@@ -2,7 +2,7 @@ package cgg.a03;
 
 import cgtools.*;
 
-public class Kugel { // alles Funktioniert, wie gehe ich damit um wenn intersect null liefert, um keine exception zu bekommen!?
+public class Kugel { 
     Point cPos;
     Color color;
     Double radius;
