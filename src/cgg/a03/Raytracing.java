@@ -1,7 +1,7 @@
 package cgg.a03;
 import cgtools.*;
 import java.util.ArrayList;
-
+import static cgtools.Vector.*;
 
 public class Raytracing implements Sampler{
     ArrayList<Kugel> kugel;
@@ -10,7 +10,6 @@ public class Raytracing implements Sampler{
     public Raytracing(ArrayList<Kugel> kugel, Lochkamera camera){
         this.kugel = kugel;
         this.camera = camera;
-
     }
 
     public Color getColor(double x, double y){
@@ -26,9 +25,9 @@ public class Raytracing implements Sampler{
     }
 
     static Color shade(Direction normal, Color color){
-        Direction lightDir = Vector.normalize(Vector.direction(1, 1, 0.5));
+        Direction lightDir = normalize(direction(1, 1, 0.5));
         Color ambient = Color.multiply(0.1, color);
-        Color diffuse = Color.multiply(0.9 * Math.max(0, Vector.dotProduct(lightDir, normal)), color);
+        Color diffuse = Color.multiply(0.9 * Math.max(0, dotProduct(lightDir, normal)), color);
         return Color.add(ambient, diffuse);
     }
 }

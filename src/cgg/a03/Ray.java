@@ -1,6 +1,7 @@
 package cgg.a03;
 
 import cgtools.*;
+import static cgtools.Vector.*;
 
 public class Ray {
     Point x0;
@@ -16,7 +17,7 @@ public class Ray {
     }
 
     public Point pointAt(double t){
-        Point calc = Vector.add(Vector.multiply(d, t), x0); 
+        Point calc = add(multiply(d, t), x0); 
         return calc;
     }
 

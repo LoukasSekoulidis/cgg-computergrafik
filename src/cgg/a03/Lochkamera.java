@@ -1,6 +1,7 @@
 package cgg.a03;
 
 import cgtools.*;
+import static cgtools.Vector.*;
 
 public class Lochkamera {
     Double phi; 
@@ -19,8 +20,8 @@ public class Lochkamera {
         double x = xA - width/2;
         double y = height/2 - yA;
         double z = -(width/2)/Math.tan(phi/2);
-        Direction d = Vector.direction(x, y, z);
-        d = Vector.normalize(d);
+        Direction d = direction(x, y, z);
+        d = normalize(d);
         return new Ray(ursprung, d, 0, 9999999);
     }
 }
