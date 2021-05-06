@@ -1,4 +1,6 @@
 package cgg.a03;
+
+import cgg.*;
 import cgtools.*;
 import java.util.ArrayList;
 import static cgtools.Vector.*;
