@@ -3,6 +3,9 @@ package cgg.a03;
 import cgtools.*;
 import static cgtools.Vector.*;
 
+import cgg.Hit;
+import cgg.Ray;
+
 public class Kugel { 
     Point cPos;
     Color color;
@@ -15,9 +18,9 @@ public class Kugel {
     }
 
     public Hit intersect(Ray r){
-        Direction tmpX0 = subtract(r.x0, cPos);
-        double a = dotProduct(r.d, r.d);
-        double b = 2* (dotProduct(tmpX0, r.d));
+        Direction tmpX0 = subtract(r.getX0(), cPos);
+        double a = dotProduct(r.getD(), r.getD());
+        double b = 2* (dotProduct(tmpX0, r.getD()));
         double c = dotProduct(tmpX0, tmpX0) - Math.pow(radius, 2);
         double d = Math.pow(b, 2) - 4*a*c;
         if(d < 0){

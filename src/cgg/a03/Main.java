@@ -30,7 +30,7 @@ public class Main {
       System.out.println(clr.toString());
    }
 
-    Lochkamera finalCam = new Lochkamera(Math.PI/5, width, height, point(0, 0, 0));
+    Lochkamera finalCam = new Lochkamera(width, height, Math.PI/5);
     Raytracing finalRT = new Raytracing(kugelList, finalCam);
 
     Image image = new Image(width, height, 10);
