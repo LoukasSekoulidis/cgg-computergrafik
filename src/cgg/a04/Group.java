@@ -12,16 +12,17 @@ public class Group implements Shape{
     }
     
     public Hit intersect(Ray r) {
-        Shape closestShape = null;
         double comp = Double.POSITIVE_INFINITY;
+        Hit hitRes = null;
         for(Shape s : shapes){
-            if(s.intersect(r) != null){
-                double tmp =  s.intersect(r).t;
-                if(tmp <= comp){
-                    closestShape = s;
+            Hit hitComp = s.intersect(r);
+            if(hitComp != null){
+                if(hitComp.t <= comp){
+                    comp = hitComp.t;
+                    hitRes = hitComp;
                 }
             }
         }
-        return closestShape.intersect(r);
+        return hitRes;
     }
 }
