@@ -1,8 +1,7 @@
 package cgg.a04;
 
 import cgtools.*;
-import cgg.Hit;
-import cgg.Ray;
+
 import static cgtools.Vector.*;
 
 public class Plane implements Shape{

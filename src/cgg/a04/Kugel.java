@@ -1,5 +1,4 @@
 package cgg.a04;
-import cgg.*;
 
 import cgtools.*;
 import static cgtools.Vector.*;

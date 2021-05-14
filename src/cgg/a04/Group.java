@@ -1,7 +1,5 @@
 package cgg.a04;
 
-import cgg.Hit;
-import cgg.Ray;
 import java.util.ArrayList;
 
 public class Group implements Shape{

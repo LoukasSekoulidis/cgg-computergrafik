@@ -1,6 +1,8 @@
 package cgg.a03;
 
-import cgg.*;
+import cgg.a04.Hit;
+import cgg.a04.Lochkamera;
+import cgg.a04.Ray;
 import cgtools.*;
 import java.util.ArrayList;
 import static cgtools.Vector.*;

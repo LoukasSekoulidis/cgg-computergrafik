@@ -3,8 +3,8 @@ package cgg.a03;
 import cgtools.*;
 import static cgtools.Vector.*;
 
-import cgg.Hit;
-import cgg.Ray;
+import cgg.a04.Hit;
+import cgg.a04.Ray;
 
 public class Kugel { 
     Point cPos;

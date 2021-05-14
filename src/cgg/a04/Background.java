@@ -2,7 +2,6 @@ package cgg.a04;
 
 import static cgtools.Vector.*;
 import cgtools.*;
-import cgg.*;
 
 public class Background implements Shape{
     Color color;
