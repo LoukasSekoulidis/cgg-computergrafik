@@ -1,19 +1,19 @@
-package cgg.a04;
+package cgg.a06;
 
 import static cgtools.Vector.*;
 import cgtools.*;
 
 public class Background implements Shape{
-    Color color;
+    Material material;
 
-    public Background(Color color){
-        this.color = color;
+    public Background(Material material){
+        this.material = material;
     }
     
-    public Hit intersect(Ray r){ // überprüfung t-max 
+    public Hit intersect(Ray r){
         double fillNum = Double.POSITIVE_INFINITY;
         Point fillPoi = r.pointAt(Double.POSITIVE_INFINITY);
         Direction fillDir = negate(r.d);
-        return new Hit(fillNum, fillPoi, normalize(fillDir), color);
+        return new Hit(fillNum, fillPoi, normalize(fillDir), material);
     }
 }
