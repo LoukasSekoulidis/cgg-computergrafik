@@ -73,4 +73,12 @@ public class Mantel implements Shape{
     public Plane getBoden(){
         return boden;
     }
+
+    public Kugel getKugelDeckel(){
+        return new Kugel(add(cylinderPos, multiply(cylinderDirection, height)), radius , material);
+    }
+    
+    public Kugel getKugelBoden(){
+        return new Kugel(cylinderPos, radius , material);
+    }
 }
