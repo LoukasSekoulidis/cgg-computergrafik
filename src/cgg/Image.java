@@ -1,14 +1,22 @@
 package cgg;
-// for push with tag, forgot tag a01 while commit
+
 import cgtools.*;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import static cgtools.Color.*;
 
 public class Image {
   protected int width;
   protected int height;
   protected double[] data;
-  protected ArrayList<Color> colorMedian; 
+  protected ArrayList<Color> colorMedian;
   protected int sampleCount;
+  int x;
+  int y;
+  Future<Color> pixel;
 
   public Image(int width, int height, int sampleCount) {
     this.sampleCount = sampleCount;
@@ -19,9 +27,9 @@ public class Image {
 
   public void setPixel(int x, int y, Color color) {
     int index = (3 * (y * width + x));
-    data[index] = color.r;
-    data[index +1] = color.g;
-    data[index +2] = color.b;
+    data[index] = Math.pow(color.r, 1 / 2.2);
+    data[index + 1] = Math.pow(color.g, 1 / 2.2);
+    data[index + 2] = Math.pow(color.b, 1 / 2.2);
   }
 
   public void write(String filename) {
@@ -29,39 +37,53 @@ public class Image {
   }
 
   public void sample(Sampler s) {
-    for (int x = 0; x != width; x++){
-      for (int y = 0; y != height; y++){
-        colorMedian = new ArrayList<Color>();
-        for(int xi = 0; xi <= sampleCount; xi++){
-          for(int yi = 0; yi <= sampleCount; yi++){
-            double rx = cgtools.Random.random();
-            double ry = cgtools.Random.random();
-            double xs = x + (xi + rx)/sampleCount;
-            double ys = y + (yi + ry)/sampleCount;
-            colorMedian.add(s.getColor(xs, ys));
-          }
-        }
-        double r = 0;
-        double g = 0;
-        double b = 0;
-        int count = 0;
-        for(Color clr : colorMedian){
-          count++;
-          r += clr.r;
-          g += clr.g;
-          b += clr.b;
-        }
-        Color mix = new Color(r/count, g/count, b/count);
-        setPixel(x, y, gammaKorrektur(mix));
+    ArrayList<Future<Color>> pixels = new ArrayList<Future<Color>>();
+    ExecutorService pool = Executors.newFixedThreadPool(5);
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        final int x2 = x;
+        final int y2 = y;
+
+        Callable<Color> calculateOnePixel = () -> superSample(s, x2, y2, sampleCount);
+
+        Future<Color> pixel = pool.submit(calculateOnePixel);
+        pixels.add(pixel);
       }
     }
+    for (int x = 0, counter = 0; x < width; x++) {
+      for (int y = 0; y < height; y++, counter++) {
+
+        Color averageColor = new Color(0, 0, 0);
+        try {
+          averageColor = pixels.get(counter).get();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+
+        setPixel(x, y, averageColor);
+      }
+    }
+    pool.shutdown();
   }
 
-  public Color gammaKorrektur(Color c){
-    double r = Math.pow(c.r, 1/2.2);
-    double g = Math.pow(c.g, 1/2.2);
-    double b = Math.pow(c.b, 1/2.2);
-    Color tmp = new Color(r, g, b);
-    return tmp;
+  public Color superSample(Sampler s, int x, int y, int samplingRate) {
+    Color avgCol = new Color(0, 0, 0);
+
+    for (int xi = 0; xi <= samplingRate; xi++) {
+      for (int yi = 0; yi <= samplingRate; yi++) {
+
+        double rx = cgtools.Random.random();
+        double ry = cgtools.Random.random();
+        double xs = x + (xi + rx) / sampleCount;
+        double ys = y + (yi + ry) / sampleCount;
+
+        Color current = s.getColor(xs, ys);
+        avgCol = add(avgCol, current);
+      }
+    }
+    int numbOfSamp = samplingRate * samplingRate;
+    avgCol = divide(avgCol, numbOfSamp);
+    return avgCol;
   }
 }
