@@ -1,7 +1,6 @@
 package cgg.a08;
 
 import cgg.*;
-import cgg.a06.BackgroundMaterial;
 import cgtools.*;
 import static cgtools.Vector.*;
 
@@ -11,8 +10,8 @@ import static cgtools.Matrix.*;
 public class Main { // Ballonfiguren als Ansicht!
 
   public static void main(String[] args) {  //Immer background hinzufügen ? wie besser implementieren um Nullpointer zu verhindern?
-    final int width = 1280;
-    final int height = 720; 
+    final int width = 1280/2;
+    final int height = 720/2; 
 
     Group scene = new Group(identity);
     Camera camera = new Camera(width, height, Math.PI/3, multiply(translation(-19,22.5,19), rotation(0,1,0,-45), rotation(1,0,0, -45)));
@@ -28,19 +27,6 @@ public class Main { // Ballonfiguren als Ansicht!
     cylinder.add(bStamm);
     cylinder.add(background);
     scene.add(cylinder);
-
-    Group cylinderA = new Group(identity);
-    Mantel stammA = new Mantel(point(0, -17.2, 0), new DiffuseMaterial(color(0.69, 0.39, 0)), 6, 15.5);
-    Plane aA = stammA.getDeckel();
-    Plane bA = stammA.getBoden();
-    cylinderA.add(background);
-    cylinderA.add(stammA);
-    cylinderA.add(aA);
-    cylinderA.add(bA);
-    scene.add(cylinderA);
-    
-    
-    
     
     Material a = new Emissive(color(0.92,0.5,1.00));
     Material b = new Emissive(color(0.50,0.92,1.00));

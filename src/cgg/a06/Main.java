@@ -38,8 +38,8 @@ public class Main {
     shapes.add(floor);
     shapes.add(ceiling);
 
-    Shape glassBallLeft = new Kugel(point(-0.5, -0, -1), 0.5, new TransmissiveMaterial(white, 1.5));
-    Shape glassBallRight = new Kugel(point(0.5, -0, -1), 0.5, new TransmissiveMaterial(white, 1.5));
+    // Shape glassBallLeft = new Kugel(point(-0.5, -0, -1), 0.5, new TransmissiveMaterial(white, 1.5));
+    // Shape glassBallRight = new Kugel(point(0.5, -0, -1), 0.5, new TransmissiveMaterial(white, 1.5));
     // shapes.add(glassBallLeft);
     // shapes.add(glassBallRight);
 
