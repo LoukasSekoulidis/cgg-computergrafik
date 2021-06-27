@@ -1,7 +1,6 @@
 package cgg.a09;
 
 import cgg.*;
-import cgtools.Point;
 import static cgtools.Vector.*;
 import java.util.concurrent.ExecutionException;
 import static cgtools.Color.*;
