@@ -44,12 +44,10 @@ public class Main {
     PolkaDots polkaDots = new PolkaDots(whiteConst, blackConst, 0.5);
     TextureTransform transform = new TextureTransform(polkaDots, matrix);
     DiffuseMaterial tmp = new DiffuseMaterial(transform);
-    TransmissiveMaterial rustyTransmissiveMaterial = new TransmissiveMaterial(transform, 1.5);
 
     Checkerboard checkerBoard3 = new Checkerboard(18, new ConstantColor(color(0.8, 0.2, 0.2)),
         new ConstantColor(color(0.2, 0.2, 0.8)));
     DiffuseMaterial diffusesMaterial3 = new DiffuseMaterial(checkerBoard3);
-    Emissive emissiveMaterial = new Emissive(checkerBoard3);
 
     Sphere jupitSphere = new Sphere(point(-1.6, -0.5, 0), 1.5, sphereMaterial);
     Sphere testSphere = new Sphere(point(4.9, -0.5, 0), 1.5, diffusesMaterial3);
